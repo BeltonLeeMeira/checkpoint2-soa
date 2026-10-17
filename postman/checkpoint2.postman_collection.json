@@ -1,0 +1,173 @@
+{
+  "info": {
+    "name": "Checkpoint 2 - CRUD de Pedidos (/orders)",
+    "description": "Testes dos cinco endpoints. A aplicacao precisa estar rodando em http://localhost:8085.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8085"
+    }
+  ],
+  "item": [
+    {
+      "name": "1 - Criar pedido (POST /orders)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"clientName\": \"Maria Silva\",\n    \"totalValue\": 249.9\n}"
+        },
+        "description": "Resposta esperada: 201 Created, com orderDate preenchida automaticamente."
+      }
+    },
+    {
+      "name": "2 - Listar pedidos (GET /orders)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        },
+        "description": "Resposta esperada: 200 OK."
+      }
+    },
+    {
+      "name": "3 - Buscar pedido (GET /orders/1)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            "1"
+          ]
+        },
+        "description": "Resposta esperada: 200 OK, ou 404 se o id nao existir."
+      }
+    },
+    {
+      "name": "4 - Atualizar pedido (PUT /orders/1)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/orders/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            "1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"clientName\": \"Maria Silva Souza\",\n    \"totalValue\": 310.5\n}"
+        },
+        "description": "Resposta esperada: 200 OK."
+      }
+    },
+    {
+      "name": "5 - Excluir pedido (DELETE /orders/1)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            "1"
+          ]
+        },
+        "description": "Resposta esperada: 204 No Content."
+      }
+    },
+    {
+      "name": "6 - Validacao: nome vazio",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"clientName\": \"\",\n    \"totalValue\": 100.0\n}"
+        },
+        "description": "Resposta esperada: 400 Bad Request."
+      }
+    },
+    {
+      "name": "7 - Validacao: valor negativo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"clientName\": \"Joao Pereira\",\n    \"totalValue\": -50.0\n}"
+        },
+        "description": "Resposta esperada: 400 Bad Request."
+      }
+    }
+  ]
+}
